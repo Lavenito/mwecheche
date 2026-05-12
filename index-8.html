@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="King Laverians – Premium curated products for those who demand royalty. Shop fashion, lifestyle, home & exclusive rarities with M-Pesa payment."/>
+  <meta name="keywords" content="King Laverians, premium products, Kenya, M-Pesa, fashion, lifestyle, home, accessories"/>
+  <meta property="og:title" content="King 👑 Laverians — Reign in Every Detail"/>
+  <meta property="og:description" content="A curated universe of exceptional products crafted for those who demand nothing less than royalty."/>
+  <meta property="og:type" content="website"/>
+  <title>King 👑 Laverians — Reign in Every Detail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;900&family=Josefin+Sans:wght@200;300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* ═══════════════════════════════════
+       ROOT & RESET
+    ═══════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C9A84C;
+      --gold-l: #E8C97A;
+      --gold-d: #8B6914;
+      --obsidian: #0A0A0A;
+      --ink: #111111;
+      --ink2: #0d0c09;
+      --ivory: #F7F3EC;
+      --ivory-d: #C0B8A8;
+      --crimson: #8B1A1A;
+      --silver: #A8A090;
+      --nav-h: 72px;
+      --radius: 0px;
+      --ease: cubic-bezier(0.4,0,0.2,1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--obsidian);
+      color: var(--ivory);
+      font-family: 'Josefin Sans', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; }
+    input, textarea, select { font-family: inherit; }
+
+    /* Noise overlay */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9990; opacity: 0.3;
+    }
+
+    /* ═══════════════════════════════════
+       CURSOR
+    ═══════════════════════════════════ */
+    .cursor {
+      width: 10px; height: 10px;
+      background: var(--gold); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: width .18s var(--ease), height .18s var(--ease);
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      width: 32px; height: 32px;
+      border: 1px solid rgba(201,168,76,.55);
+      border-radius: 50%; position: fixed;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .3s var(--ease), height .3s var(--ease);
+    }
+    @media (hover: none) { .cursor, .cursor-ring { display: none; } body { cursor: auto; } }
+
+    /* ═══════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 500; height: var(--nav-h);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      background: linear-gradient(to bottom, rgba(10,10,10,.98), rgba(10,10,10,0));
+      transition: background .3s var(--ease), border-color .3s;
+    }
+    .nav.solid { background: rgba(10,10,10,.97); border-bottom: 1px solid rgba(201,168,76,.1); }
+    .nav-logo {
+      font-family: 'Cinzel', serif; font-size: .95rem;
+      letter-spacing: .3em; color: var(--gold);
+      text-transform: uppercase; display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: .65rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--ivory-d);
+      transition: color .25s; padding: .3rem 0;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width .3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-right { display: flex; align-items: center; gap: .75rem; }
+    .nav-cart {
+      background: none; border: 1px solid rgba(201,168,76,.28);
+      color: var(--gold); padding: .5rem 1rem;
+      font-size: .62rem; letter-spacing: .18em;
+      text-transform: uppercase; cursor: none;
+      transition: all .25s; position: relative;
+    }
+    .nav-cart:hover { background: rgba(201,168,76,.1); }
+    .cart-badge {
+      position: absolute; top: -7px; right: -7px;
+      background: var(--gold); color: var(--obsidian);
+      width: 17px; height: 17px; border-radius: 50%;
+      font-size: .58rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-cta {
+      background: var(--gold); color: var(--obsidian);
+      padding: .55rem 1.4rem; font-size: .62rem;
+      letter-spacing: .18em; text-transform: uppercase;
+      transition: background .25s;
+    }
+    .nav-cta:hover { background: var(--gold-l); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: var(--gold); transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+
+    /* Mobile Drawer */
+    .mob-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 590; opacity: 0; pointer-events: none; transition: opacity .35s; }
+    .mob-overlay.open { opacity: 1; pointer-events: all; }
+    .mob-nav {
+      position: fixed; top: 0; right: -100%; bottom: 0;
+      width: min(300px, 85vw); background: #0c0b08;
+      border-left: 1px solid rgba(201,168,76,.15);
+      z-index: 600; padding: 5rem 2rem 2rem;
+      transition: right .4s var(--ease);
+      overflow-y: auto;
+    }
+    .mob-nav.open { right: 0; }
+    .mob-nav a {
+      display: block; font-family: 'Cinzel', serif;
+      font-size: 1rem; color: var(--ivory);
+      padding: 1rem 0; border-bottom: 1px solid rgba(201,168,76,.08);
+      transition: color .25s;
+    }
+    .mob-nav a:hover { color: var(--gold); }
+    .mob-socials { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+    .mob-social { border: 1px solid rgba(201,168,76,.2); color: var(--gold-d); font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; padding: .4rem .8rem; }
+
+    /* ═══════════════════════════════════
+       CART DRAWER
+    ═══════════════════════════════════ */
+    .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 690; opacity: 0; pointer-events: none; transition: opacity .35s; }
+    .cart-overlay.open { opacity: 1; pointer-events: all; }
+    .cart-drawer {
+      position: fixed; top: 0; right: -480px; bottom: 0;
+      width: min(460px, 100vw); background: #0c0b08;
+      border-left: 1px solid rgba(201,168,76,.18);
+      z-index: 700; display: flex; flex-direction: column;
+      transition: right .4s var(--ease);
+    }
+    .cart-drawer.open { right: 0; }
+    .cart-hd {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 2rem; border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .cart-hd-title { font-family: 'Cinzel', serif; font-size: .95rem; letter-spacing: .2em; color: var(--gold); }
+    .cart-x { background: none; border: none; color: var(--ivory-d); font-size: 1.3rem; cursor: none; transition: color .2s; }
+    .cart-x:hover { color: var(--gold); }
+    .cart-body { flex: 1; overflow-y: auto; padding: 1.2rem 2rem; }
+    .cart-empty-msg { text-align: center; padding: 3rem 0; color: var(--ivory-d); font-size: .75rem; letter-spacing: .1em; }
+    .cart-empty-msg .ei { font-size: 2.5rem; margin-bottom: 1rem; }
+    .cart-item {
+      display: flex; gap: 1rem; padding: 1rem 0;
+      border-bottom: 1px solid rgba(201,168,76,.07); align-items: center;
+    }
+    .cart-item-img {
+      width: 56px; height: 56px;
+      background: #1a1810; border: 1px solid rgba(201,168,76,.12);
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    }
+    .ci-name { font-family: 'Cinzel', serif; font-size: .72rem; color: var(--ivory); margin-bottom: .25rem; }
+    .ci-price { font-size: .68rem; color: var(--gold); }
+    .ci-qty { display: flex; align-items: center; gap: .5rem; margin-top: .4rem; }
+    .ci-qty button { background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.2); color: var(--gold); width: 22px; height: 22px; font-size: .8rem; cursor: none; transition: background .2s; }
+    .ci-qty button:hover { background: rgba(201,168,76,.25); }
+    .ci-qty span { font-size: .72rem; min-width: 20px; text-align: center; }
+    .ci-rm { background: none; border: none; color: var(--ivory-d); cursor: none; font-size: 1rem; margin-left: auto; transition: color .2s; flex-shrink: 0; }
+    .ci-rm:hover { color: #c0392b; }
+    .cart-ft { padding: 1.2rem 2rem; border-top: 1px solid rgba(201,168,76,.12); }
+    .cart-total { display: flex; justify-content: space-between; font-family: 'Cinzel', serif; font-size: .95rem; color: var(--ivory); margin-bottom: .4rem; }
+    .cart-total span { color: var(--gold); }
+    .cart-note { font-size: .62rem; color: var(--silver); letter-spacing: .08em; margin-bottom: 1.2rem; }
+    .btn-checkout {
+      display: block; width: 100%; background: var(--gold);
+      color: var(--obsidian); border: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: .68rem; letter-spacing: .28em;
+      text-transform: uppercase; padding: 1rem; cursor: none;
+      transition: background .25s;
+    }
+    .btn-checkout:hover { background: var(--gold-l); }
+
+    /* ═══════════════════════════════════
+       HERO
+    ═══════════════════════════════════ */
+    .hero {
+      min-height: 100vh; display: grid; place-items: center;
+      position: relative; overflow: hidden;
+      text-align: center; padding: calc(var(--nav-h) + 2rem) 1.5rem 5rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 65% at 50% 40%, rgba(201,168,76,.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 15% 85%, rgba(139,26,26,.05) 0%, transparent 55%),
+        linear-gradient(170deg, #0A0A0A 0%, #0e0c07 55%, #0A0A0A 100%);
+    }
+    .hero-rings { position: absolute; top: 50%; left: 50%; pointer-events: none; }
+    .hr { position: absolute; border-radius: 50%; border: 1px solid rgba(201,168,76,.05); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .hr:nth-child(1) { width: 380px; height: 380px; animation: spin 45s linear infinite; }
+    .hr:nth-child(2) { width: 620px; height: 620px; animation: spin 70s linear infinite reverse; border-color: rgba(201,168,76,.03); }
+    .hr:nth-child(3) { width: 860px; height: 860px; animation: spin 95s linear infinite; border-color: rgba(201,168,76,.02); }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .hero-eyebrow {
+      font-size: .6rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.8rem; opacity: 0; animation: fu 1s ease .2s forwards;
+    }
+    .hero-h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 9vw, 7.5rem); font-weight: 900;
+      line-height: .95; color: var(--ivory); margin-bottom: .15em;
+      opacity: 0; animation: fu 1s ease .4s forwards;
+    }
+    .hero-crown { color: var(--gold); display: inline-block; animation: cf 3s ease-in-out infinite; }
+    @keyframes cf { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 3.5vw, 3rem);
+      font-style: italic; font-weight: 300; color: var(--gold-l);
+      opacity: 0; animation: fu 1s ease .6s forwards;
+    }
+    .hero-divider {
+      width: 100px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 2rem auto; opacity: 0; animation: fu 1s ease .8s forwards;
+    }
+    .hero-desc {
+      font-size: clamp(.78rem, 1.5vw, .88rem); letter-spacing: .07em;
+      color: var(--ivory-d); max-width: 500px; margin: 0 auto 2.5rem;
+      line-height: 2; opacity: 0; animation: fu 1s ease 1s forwards;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fu 1s ease 1.2s forwards;
+    }
+    @keyframes fu { from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);} }
+
+    .btn-gold {
+      display: inline-flex; align-items: center;
+      background: var(--gold); color: var(--obsidian);
+      font-size: .68rem; letter-spacing: .28em; text-transform: uppercase;
+      padding: 1rem 2.5rem; position: relative; overflow: hidden;
+      transition: transform .2s; cursor: none;
+    }
+    .btn-gold::after { content:''; position:absolute; inset:0; background: var(--gold-l); transform: translateX(-100%); transition: transform .3s var(--ease); }
+    .btn-gold span { position: relative; z-index: 1; }
+    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-gold:hover::after { transform: translateX(0); }
+    .btn-outline {
+      display: inline-flex; align-items: center;
+      border: 1px solid rgba(201,168,76,.35); color: var(--gold);
+      font-size: .68rem; letter-spacing: .28em; text-transform: uppercase;
+      padding: 1rem 2.5rem; transition: all .25s; cursor: none;
+    }
+    .btn-outline:hover { background: rgba(201,168,76,.08); transform: translateY(-2px); }
+
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      opacity: 0; animation: fu 1s ease 2s forwards; z-index: 2;
+    }
+    .scroll-hint span { font-size: .52rem; letter-spacing: .4em; text-transform: uppercase; color: var(--gold-d); }
+    .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--gold-d), transparent); animation: sp 2s ease-in-out infinite; }
+    @keyframes sp { 0%,100%{opacity:.35;}50%{opacity:1;} }
+
+    /* ═══════════════════════════════════
+       MARQUEE
+    ═══════════════════════════════════ */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid rgba(201,168,76,.1);
+      border-bottom: 1px solid rgba(201,168,76,.1);
+      padding: 1rem 0; background: rgba(201,168,76,.02);
+    }
+    .marquee-track { display: flex; gap: 2rem; white-space: nowrap; animation: mq 25s linear infinite; width: max-content; }
+    .mq-item { font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .38em; text-transform: uppercase; color: rgba(201,168,76,.45); flex-shrink: 0; }
+    .mq-dot { color: var(--gold); margin: 0 .8rem; }
+    @keyframes mq { from{transform:translateX(0);}to{transform:translateX(-50%);} }
+
+    /* ═══════════════════════════════════
+       SHARED
+    ═══════════════════════════════════ */
+    section { padding: 6rem 3rem; }
+    .s-label { font-size: .58rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .s-title { font-family: 'Cinzel', serif; font-size: clamp(1.5rem, 3.5vw, 2.8rem); font-weight: 600; color: var(--ivory); line-height: 1.2; }
+    .s-title em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-l); }
+    .s-center { text-align: center; margin-bottom: 3.5rem; }
+    .s-sub { font-size: .75rem; color: var(--ivory-d); letter-spacing: .07em; line-height: 1.9; margin-top: .8rem; }
+
+    /* ═══════════════════════════════════
+       CATEGORIES
+    ═══════════════════════════════════ */
+    .categories { background: var(--ink); padding-left: 0; padding-right: 0; }
+    .cat-hd { padding: 0 3rem 3rem; }
+    .cat-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    @media(max-width:900px){ .cat-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:500px){ .cat-grid { grid-template-columns: 1fr 1fr; } }
+    .cat-card {
+      position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: none;
+    }
+    .cat-bg { position: absolute; inset: 0; transition: transform .6s var(--ease); }
+    .cat-card:hover .cat-bg { transform: scale(1.07); }
+    .cat-card:nth-child(1) .cat-bg { background: linear-gradient(150deg,#1a1208,#2d1f00,#0d0c0a); }
+    .cat-card:nth-child(2) .cat-bg { background: linear-gradient(150deg,#0d0c14,#1a1028,#0a0a0d); }
+    .cat-card:nth-child(3) .cat-bg { background: linear-gradient(150deg,#0a0f0d,#0d2018,#0a0a0a); }
+    .cat-card:nth-child(4) .cat-bg { background: linear-gradient(150deg,#14080a,#280d10,#0d0a0a); }
+    .cat-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-58%); font-size: clamp(2.5rem,5vw,3.5rem); transition: all .4s var(--ease); }
+    .cat-card:hover .cat-icon { top: 30%; transform: translate(-50%,0) scale(1.15); }
+    .cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,.95) 0%, transparent 55%); display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(1rem,3vw,2rem); }
+    .cat-line { width: 0; height: 1px; background: var(--gold); margin-bottom: .6rem; transition: width .5s var(--ease); }
+    .cat-card:hover .cat-line { width: 36px; }
+    .cat-name { font-family: 'Cinzel', serif; font-size: clamp(.75rem,1.5vw,1rem); color: var(--ivory); margin-bottom: .3rem; transform: translateY(8px); transition: transform .35s var(--ease); }
+    .cat-card:hover .cat-name { transform: translateY(0); }
+    .cat-desc { font-size: clamp(.6rem,1.2vw,.68rem); color: var(--ivory-d); letter-spacing: .05em; opacity: 0; transform: translateY(6px); transition: all .35s var(--ease) .05s; }
+    .cat-card:hover .cat-desc { opacity: 1; transform: translateY(0); }
+    .cat-tag { position: absolute; top: 1rem; right: 1rem; font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-d); }
+
+    /* ═══════════════════════════════════
+       PRODUCTS
+    ═══════════════════════════════════ */
+    .products { background: var(--obsidian); }
+    .filter-row { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+    .filt {
+      background: none; border: 1px solid rgba(201,168,76,.18);
+      color: var(--ivory-d); font-family: 'Josefin Sans', sans-serif;
+      font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+      padding: .5rem 1.2rem; cursor: none; transition: all .25s;
+    }
+    .filt:hover, .filt.on { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,.05); }
+    .prod-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem; max-width: 1300px; margin: 0 auto;
+    }
+    .prod-card {
+      background: #0f0e0b; border: 1px solid rgba(201,168,76,.1);
+      transition: border-color .3s, transform .3s; position: relative; cursor: none;
+    }
+    .prod-card:hover { border-color: rgba(201,168,76,.32); transform: translateY(-4px); }
+    .prod-img {
+      width: 100%; aspect-ratio: 1; background: #1a1810;
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(3rem,5vw,4.5rem); position: relative; overflow: hidden;
+    }
+    .prod-img::after { content:''; position:absolute; inset:0; background: linear-gradient(135deg,rgba(201,168,76,.04),transparent 60%); }
+    .prod-badge { position: absolute; top: .8rem; left: .8rem; background: var(--gold); color: var(--obsidian); font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; padding: .25rem .6rem; z-index: 1; }
+    .prod-badge.sale { background: var(--crimson); color: #fff; }
+    .prod-badge.limited { background: #1a0a1a; color: #c97aff; border: 1px solid rgba(201,122,255,.3); }
+    .prod-body { padding: 1.2rem; }
+    .prod-cat { font-size: .55rem; letter-spacing: .32em; text-transform: uppercase; color: var(--gold-d); margin-bottom: .4rem; }
+    .prod-name { font-family: 'Cinzel', serif; font-size: clamp(.78rem,1.5vw,.9rem); color: var(--ivory); margin-bottom: .5rem; line-height: 1.4; }
+    .prod-stars { color: var(--gold); font-size: .65rem; margin-bottom: .9rem; }
+    .prod-stars span { color: var(--silver); font-size: .6rem; margin-left: .3rem; }
+    .prod-foot { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .prod-price { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); }
+    .prod-price del { font-size: .85rem; color: var(--silver); margin-left: .3rem; font-family: 'Josefin Sans', sans-serif; }
+    .prod-add {
+      background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.22);
+      color: var(--gold); font-size: .58rem; letter-spacing: .18em;
+      text-transform: uppercase; padding: .5rem .9rem; cursor: none; transition: all .25s; white-space: nowrap;
+    }
+    .prod-add:hover, .prod-add.added { background: var(--gold); color: var(--obsidian); }
+
+    /* ═══════════════════════════════════
+       FEATURED
+    ═══════════════════════════════════ */
+    .featured { background: var(--ink2); }
+    .feat-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    @media(max-width:860px){ .feat-inner { grid-template-columns: 1fr; gap: 3rem; } }
+    .feat-vis { position: relative; aspect-ratio: 1; }
+    .feat-frame { position: absolute; inset: 0; border: 1px solid rgba(201,168,76,.18); transform: rotate(3deg); transition: transform .5s var(--ease); }
+    .feat-vis:hover .feat-frame { transform: rotate(0); }
+    .feat-box { position: absolute; inset: 16px; background: linear-gradient(135deg,#151208,#1e1a0a); display: grid; place-items: center; font-size: clamp(4rem,8vw,7rem); }
+    .feat-badge { position: absolute; top: -8px; right: -8px; background: var(--gold); color: var(--obsidian); font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; padding: .45rem .9rem; }
+    .feat-name { font-family: 'Cinzel', serif; font-size: clamp(1.4rem,2.5vw,2rem); color: var(--ivory); line-height: 1.25; margin-bottom: 1.2rem; }
+    .feat-name em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-l); }
+    .feat-desc { font-size: .78rem; line-height: 2; color: var(--ivory-d); margin-bottom: 1.5rem; }
+    .feat-perks { margin-bottom: 1.8rem; }
+    .feat-perk { display: flex; align-items: center; gap: .7rem; font-size: .72rem; color: var(--ivory-d); padding: .45rem 0; border-bottom: 1px solid rgba(201,168,76,.07); }
+    .feat-perk::before { content: '✦'; color: var(--gold); font-size: .55rem; flex-shrink: 0; }
+    .feat-price { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); margin-bottom: 1.8rem; }
+    .feat-price span { font-size: .82rem; color: var(--ivory-d); font-family: 'Josefin Sans', sans-serif; }
+
+    /* ═══════════════════════════════════
+       HOW IT WORKS
+    ═══════════════════════════════════ */
+    .hiw { background: #0d0c09; }
+    .steps { display: grid; grid-template-columns: repeat(4,1fr); max-width: 1200px; margin: 0 auto; }
+    @media(max-width:800px){ .steps { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px){ .steps { grid-template-columns: 1fr; } }
+    .step { padding: 2.5rem 2rem; border: 1px solid rgba(201,168,76,.08); text-align: center; transition: border-color .3s; }
+    .step:hover { border-color: rgba(201,168,76,.25); }
+    .step-n { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 900; color: rgba(201,168,76,.08); line-height: 1; margin-bottom: .8rem; transition: color .3s; }
+    .step:hover .step-n { color: rgba(201,168,76,.2); }
+    .step-ico { font-size: 2rem; margin-bottom: .8rem; }
+    .step-t { font-family: 'Cinzel', serif; font-size: .82rem; color: var(--ivory); margin-bottom: .6rem; }
+    .step-d { font-size: .72rem; color: var(--ivory-d); line-height: 1.9; }
+
+    /* ═══════════════════════════════════
+       STATS
+    ═══════════════════════════════════ */
+    .stats { background: var(--gold); padding: 3rem 3rem; }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; text-align: center; }
+    @media(max-width:700px){ .stats-inner { grid-template-columns: repeat(2,1fr); } }
+    .stat-n { font-family: 'Cinzel', serif; font-size: clamp(1.8rem,4vw,2.5rem); font-weight: 900; color: var(--obsidian); line-height: 1; }
+    .stat-l { font-size: .6rem; letter-spacing: .28em; text-transform: uppercase; color: rgba(10,10,10,.55); margin-top: .4rem; }
+
+    /* ═══════════════════════════════════
+       BRAND STORY
+    ═══════════════════════════════════ */
+    .story { background: var(--obsidian); }
+    .story-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center; }
+    @media(max-width:860px){ .story-inner { grid-template-columns: 1fr; gap: 3rem; } }
+    .story-vis { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 420px; }
+    .sb { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: clamp(2rem,4vw,3rem); border: 1px solid rgba(201,168,76,.1); transition: all .35s; cursor: default; }
+    .sb:nth-child(1){ background:#1a1208; margin-top: 0; }
+    .sb:nth-child(2){ background:#0d0c14; margin-top: 1.5rem; }
+    .sb:nth-child(3){ background:#0a0f0d; margin-top: -1.5rem; }
+    .sb:nth-child(4){ background:#14080a; margin-top: 0; }
+    .sb:hover { border-color: rgba(201,168,76,.3); transform: scale(1.04); }
+    .story-t { font-family: 'Cinzel', serif; font-size: clamp(1.5rem,2.8vw,2.2rem); color: var(--ivory); line-height: 1.3; margin-bottom: 1.5rem; }
+    .story-t em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-l); }
+    .story-p { font-size: .78rem; line-height: 2.1; color: var(--ivory-d); margin-bottom: 1rem; }
+    .story-sig { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.8rem; color: var(--gold); margin-top: 1.8rem; }
+
+    /* ═══════════════════════════════════
+       MEMBERSHIP
+    ═══════════════════════════════════ */
+    .membership { background: var(--ink); }
+    .tiers { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.2rem; max-width: 1200px; margin: 0 auto; }
+    .tier {
+      border: 1px solid rgba(201,168,76,.1); padding: 2.2rem 1.8rem;
+      position: relative; overflow: hidden; transition: transform .3s, border-color .3s;
+    }
+    .tier::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; }
+    .tier.t-bronze::before { background: #cd7f32; }
+    .tier.t-silver::before { background: linear-gradient(90deg,#a8a090,#c8c0b0); }
+    .tier.t-gold::before { background: linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-l)); }
+    .tier.t-plat::before { background: linear-gradient(90deg,#8ab4c8,#bde0f0,#8ab4c8); }
+    .tier:hover { transform: translateY(-5px); border-color: rgba(201,168,76,.28); }
+    .tier.featured { border-color: rgba(201,168,76,.32); background: #131109; }
+    .tier-pop { position: absolute; top: 1rem; right: 1rem; background: var(--gold); color: var(--obsidian); font-size: .5rem; letter-spacing: .18em; padding: .22rem .55rem; text-transform: uppercase; }
+    .tier-ico { font-size: 2.2rem; margin-bottom: .8rem; }
+    .tier-nm { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--ivory); margin-bottom: .3rem; }
+    .tier-tag { font-size: .66rem; color: var(--ivory-d); letter-spacing: .08em; margin-bottom: 1.5rem; }
+    .tier-p { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--gold); }
+    .tier-p span { font-size: .72rem; color: var(--ivory-d); font-family: 'Josefin Sans', sans-serif; }
+    .tier-period { font-size: .58rem; color: var(--silver); letter-spacing: .1em; margin-bottom: 1.5rem; }
+    .tier-perks { list-style: none; margin-bottom: 1.8rem; }
+    .tier-perks li { font-size: .7rem; color: var(--ivory-d); padding: .42rem 0; border-bottom: 1px solid rgba(201,168,76,.06); display: flex; gap: .5rem; }
+    .tier-perks li::before { content:'✦'; color: var(--gold); font-size: .55rem; margin-top: 2px; flex-shrink: 0; }
+    .tier-btn {
+      display: block; width: 100%; border: 1px solid rgba(201,168,76,.28);
+      background: none; color: var(--gold); font-family: 'Josefin Sans', sans-serif;
+      font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
+      padding: .8rem; cursor: none; transition: all .25s; text-align: center;
+    }
+    .tier-btn:hover, .tier.featured .tier-btn { background: var(--gold); color: var(--obsidian); }
+
+    /* ═══════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════ */
+    .testimonials { background: #09090a; }
+    .testi-wrap { max-width: 860px; margin: 0 auto; }
+    .testi-slide { display: none; text-align: center; padding: 2rem 1rem; animation: tIn .5s ease; }
+    .testi-slide.on { display: block; }
+    @keyframes tIn { from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);} }
+    .testi-stars { color: var(--gold); font-size: 1rem; margin-bottom: 1.8rem; }
+    .testi-q { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem,2.5vw,1.55rem); font-style: italic; line-height: 1.8; color: var(--ivory); margin-bottom: 1.8rem; }
+    .testi-who { font-size: .62rem; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); }
+    .testi-loc { font-size: .58rem; color: var(--silver); margin-top: .25rem; letter-spacing: .12em; }
+    .testi-ctrls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+    .t-btn { background: none; border: 1px solid rgba(201,168,76,.22); color: var(--gold); width: 38px; height: 38px; cursor: none; font-size: .9rem; transition: all .25s; display: flex; align-items: center; justify-content: center; }
+    .t-btn:hover { background: rgba(201,168,76,.1); }
+    .t-dots { display: flex; gap: .4rem; }
+    .t-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(201,168,76,.2); border: none; cursor: none; transition: background .25s; }
+    .t-dot.on { background: var(--gold); }
+
+    /* ═══════════════════════════════════
+       FAQ
+    ═══════════════════════════════════ */
+    .faq { background: var(--ink); }
+    .faq-inner { max-width: 780px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid rgba(201,168,76,.1); }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 0; cursor: none;
+      font-family: 'Cinzel', serif; font-size: clamp(.78rem,1.5vw,.88rem);
+      color: var(--ivory); text-align: left; transition: color .25s;
+    }
+    .faq-q:hover, .faq-q.on { color: var(--gold); }
+    .faq-ico { width: 22px; height: 22px; border: 1px solid rgba(201,168,76,.28); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: .9rem; flex-shrink: 0; transition: transform .3s, background .25s; }
+    .faq-q.on .faq-ico { transform: rotate(45deg); background: rgba(201,168,76,.08); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease), padding .3s; }
+    .faq-a.on { max-height: 250px; padding-bottom: 1.2rem; }
+    .faq-a p { font-size: .76rem; line-height: 2; color: var(--ivory-d); }
+
+    /* ═══════════════════════════════════
+       M-PESA CHECKOUT MODAL
+    ═══════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.85);
+      z-index: 800; display: flex; align-items: center; justify-content: center;
+      padding: 1rem; opacity: 0; pointer-events: none; transition: opacity .35s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: #0f0e0a; border: 1px solid rgba(201,168,76,.22);
+      width: 100%; max-width: 480px; padding: 2.5rem;
+      position: relative; transform: translateY(20px);
+      transition: transform .35s var(--ease);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-x { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--ivory-d); font-size: 1.2rem; cursor: none; transition: color .2s; }
+    .modal-x:hover { color: var(--gold); }
+    .modal-logo { text-align: center; margin-bottom: 1.5rem; }
+    .modal-logo span { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); letter-spacing: .2em; }
+    .modal-title { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--ivory); text-align: center; margin-bottom: .4rem; }
+    .modal-sub { font-size: .7rem; color: var(--ivory-d); text-align: center; letter-spacing: .08em; margin-bottom: 2rem; line-height: 1.7; }
+    .mpesa-badge { display: flex; align-items: center; justify-content: center; gap: .6rem; background: rgba(0,150,57,.08); border: 1px solid rgba(0,150,57,.25); padding: .8rem; margin-bottom: 1.8rem; }
+    .mpesa-icon { font-size: 1.5rem; }
+    .mpesa-text { font-size: .68rem; color: #4caf82; letter-spacing: .08em; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-label { display: block; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-d); margin-bottom: .5rem; }
+    .form-input {
+      width: 100%; background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.2); color: var(--ivory);
+      font-family: 'Josefin Sans', sans-serif; font-size: .8rem;
+      padding: .85rem 1rem; outline: none; transition: border-color .25s;
+    }
+    .form-input:focus { border-color: var(--gold); }
+    .form-input::placeholder { color: rgba(247,243,236,.25); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:420px){ .form-row { grid-template-columns: 1fr; } }
+    .order-summary { background: rgba(201,168,76,.04); border: 1px solid rgba(201,168,76,.12); padding: 1.2rem; margin-bottom: 1.5rem; }
+    .os-title { font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .os-item { display: flex; justify-content: space-between; font-size: .72rem; color: var(--ivory-d); padding: .3rem 0; }
+    .os-total { display: flex; justify-content: space-between; font-family: 'Cinzel', serif; font-size: .9rem; color: var(--ivory); margin-top: .8rem; padding-top: .8rem; border-top: 1px solid rgba(201,168,76,.12); }
+    .os-total span { color: var(--gold); }
+    .mpesa-steps { margin-bottom: 1.5rem; }
+    .ms-title { font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .ms-list { list-style: none; }
+    .ms-list li { font-size: .7rem; color: var(--ivory-d); padding: .35rem 0; display: flex; gap: .6rem; }
+    .ms-num { color: var(--gold); font-family: 'Cinzel', serif; font-size: .65rem; flex-shrink: 0; }
+    .pay-btn {
+      width: 100%; background: #009639; border: none; color: #fff;
+      font-family: 'Josefin Sans', sans-serif; font-size: .72rem;
+      letter-spacing: .25em; text-transform: uppercase; padding: 1.1rem;
+      cursor: none; transition: background .25s; margin-bottom: .8rem;
+    }
+    .pay-btn:hover { background: #00b844; }
+    .pay-btn:disabled { background: #333; cursor: not-allowed; }
+    .pay-note { font-size: .6rem; color: var(--silver); text-align: center; letter-spacing: .07em; line-height: 1.7; }
+    .pay-status { text-align: center; padding: 1.5rem; }
+    .pay-status .ps-ico { font-size: 3rem; margin-bottom: 1rem; }
+    .pay-status .ps-msg { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--ivory); margin-bottom: .5rem; }
+    .pay-status .ps-sub { font-size: .72rem; color: var(--ivory-d); line-height: 1.8; }
+    .spinner { width: 36px; height: 36px; border: 2px solid rgba(201,168,76,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+
+    /* ═══════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════ */
+    .contact { background: #0a0908; }
+    .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    @media(max-width:800px){ .contact-inner { grid-template-columns: 1fr; gap: 3rem; } }
+    .contact-info-title { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--ivory); margin-bottom: 1rem; }
+    .contact-info-title em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-l); }
+    .contact-p { font-size: .76rem; color: var(--ivory-d); line-height: 2; margin-bottom: 2rem; }
+    .social-cards { display: flex; flex-direction: column; gap: .8rem; }
+    .soc-card {
+      display: flex; align-items: center; gap: 1rem;
+      border: 1px solid rgba(201,168,76,.12); padding: 1rem 1.2rem;
+      transition: all .3s; text-decoration: none;
+    }
+    .soc-card:hover { border-color: rgba(201,168,76,.35); background: rgba(201,168,76,.04); transform: translateX(4px); }
+    .soc-icon { font-size: 1.5rem; width: 40px; text-align: center; flex-shrink: 0; }
+    .soc-info {}
+    .soc-platform { font-size: .58rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-d); margin-bottom: .2rem; }
+    .soc-handle { font-family: 'Cinzel', serif; font-size: .82rem; color: var(--ivory); }
+    .wa-chip { background: rgba(0,200,83,.08); border-color: rgba(0,200,83,.2) !important; }
+    .wa-chip:hover { background: rgba(0,200,83,.12) !important; border-color: rgba(0,200,83,.4) !important; }
+    .contact-form-wrap {}
+    .contact-form-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--ivory); margin-bottom: 1.5rem; }
+    .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:500px){ .cf-grid { grid-template-columns: 1fr; } }
+    .cf-textarea { width: 100%; background: rgba(255,255,255,.04); border: 1px solid rgba(201,168,76,.18); color: var(--ivory); font-family: 'Josefin Sans', sans-serif; font-size: .78rem; padding: .85rem 1rem; outline: none; resize: vertical; min-height: 120px; transition: border-color .25s; margin-top: 1rem; }
+    .cf-textarea:focus { border-color: var(--gold); }
+    .cf-textarea::placeholder { color: rgba(247,243,236,.25); }
+
+    /* ═══════════════════════════════════
+       NEWSLETTER
+    ═══════════════════════════════════ */
+    .newsletter {
+      background: linear-gradient(150deg,#0e0c04,#12100a);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .newsletter::before { content:'👑'; position:absolute; font-size:26rem; top:50%; left:50%; transform:translate(-50%,-50%); opacity:.025; pointer-events:none; }
+    .nl-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+    .nl-title { font-family: 'Cinzel', serif; font-size: clamp(1.3rem,3vw,2rem); color: var(--ivory); margin-bottom: .8rem; }
+    .nl-sub { font-size: .75rem; color: var(--ivory-d); letter-spacing: .07em; line-height: 1.9; margin-bottom: 2rem; }
+    .nl-form { display: flex; max-width: 440px; margin: 0 auto 1rem; }
+    .nl-input { flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(201,168,76,.2); border-right: none; color: var(--ivory); font-family: 'Josefin Sans', sans-serif; font-size: .75rem; padding: .9rem 1.2rem; outline: none; transition: border-color .25s; }
+    .nl-input:focus { border-color: var(--gold); }
+    .nl-input::placeholder { color: rgba(247,243,236,.28); }
+    .nl-btn { background: var(--gold); border: none; color: var(--obsidian); font-family: 'Josefin Sans', sans-serif; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; padding: .9rem 1.4rem; cursor: none; transition: background .25s; }
+    .nl-btn:hover { background: var(--gold-l); }
+    .nl-note { font-size: .58rem; color: var(--silver); letter-spacing: .07em; }
+
+    /* ═══════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════ */
+    footer { background: #050505; padding: 4.5rem 3rem 2rem; border-top: 1px solid rgba(201,168,76,.08); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3.5rem; }
+    @media(max-width:900px){ .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:500px){ .footer-top { grid-template-columns: 1fr; } }
+    .fb-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: .8rem; }
+    .fb-desc { font-size: .72rem; color: rgba(247,243,236,.32); line-height: 2; margin-bottom: 1.2rem; }
+    .fb-socials { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .fb-soc { border: 1px solid rgba(201,168,76,.14); color: rgba(247,243,236,.35); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; padding: .38rem .75rem; transition: all .25s; }
+    .fb-soc:hover { border-color: var(--gold); color: var(--gold); }
+    .fc-title { font-size: .58rem; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .fc-links { list-style: none; }
+    .fc-links li { margin-bottom: .7rem; }
+    .fc-links a { font-size: .72rem; color: rgba(247,243,236,.32); transition: color .25s; }
+    .fc-links a:hover { color: var(--gold); }
+    .footer-trust { border-top: 1px solid rgba(201,168,76,.07); border-bottom: 1px solid rgba(201,168,76,.07); padding: 1.5rem 0; margin-bottom: 1.8rem; display: flex; gap: 2rem; flex-wrap: wrap; }
+    .ft-item { display: flex; align-items: center; gap: .5rem; font-size: .62rem; color: rgba(247,243,236,.28); letter-spacing: .07em; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .6rem; color: rgba(247,243,236,.18); letter-spacing: .08em; }
+    .footer-legal { display: flex; gap: 1.2rem; }
+    .footer-legal a { font-size: .58rem; color: rgba(247,243,236,.18); transition: color .25s; }
+    .footer-legal a:hover { color: var(--gold); }
+
+    /* ═══════════════════════════════════
+       BACK TO TOP + TOAST
+    ═══════════════════════════════════ */
+    .btt { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--gold); color: var(--obsidian); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: none; z-index: 400; opacity: 0; transform: translateY(16px); transition: all .3s; border: none; }
+    .btt.vis { opacity: 1; transform: translateY(0); }
+    .btt:hover { background: var(--gold-l); }
+    .toast { position: fixed; bottom: 1.8rem; left: 50%; transform: translateX(-50%) translateY(80px); background: #1a1810; border: 1px solid rgba(201,168,76,.28); color: var(--ivory); padding: .9rem 1.8rem; font-size: .72rem; letter-spacing: .08em; z-index: 810; transition: transform .4s var(--ease); white-space: nowrap; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .tg { color: var(--gold); }
+
+    /* ═══════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════ */
+    .rv { opacity: 0; transform: translateY(26px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+    .rv.vi { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+    /* ═══════════════════════════════════
+       RESPONSIVE EXTRAS
+    ═══════════════════════════════════ */
+    @media(max-width:960px){
+      .nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 4.5rem 1.5rem; }
+      .cat-hd { padding: 0 1.5rem 2.5rem; }
+    }
+    @media(max-width:600px){
+      .nl-form { flex-direction: column; }
+      .nl-input { border-right: 1px solid rgba(201,168,76,.2); border-bottom: none; }
+      .hero-btns { gap: .75rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media(max-width:380px){
+      .btn-gold, .btn-outline { padding: .85rem 1.5rem; font-size: .6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+
+<!-- MOBILE OVERLAY & NAV -->
+<div class="mob-overlay" id="mOv" onclick="closeMob()"></div>
+<div class="mob-nav" id="mNav">
+  <a href="#" onclick="closeMob()">Home</a>
+  <a href="#categories" onclick="closeMob()">Collections</a>
+  <a href="#products" onclick="closeMob()">Shop All</a>
+  <a href="#story" onclick="closeMob()">Our Story</a>
+  <a href="#membership" onclick="closeMob()">Membership</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="#faq" onclick="closeMob()">FAQ</a>
+  <div class="mob-socials">
+    <a class="mob-social" href="https://instagram.com/kinglaverians" target="_blank">Instagram</a>
+    <a class="mob-social" href="https://facebook.com/kinglaverians" target="_blank">Facebook</a>
+    <a class="mob-social" href="https://wa.me/254793316778" target="_blank">WhatsApp</a>
+    <a class="mob-social" href="https://tiktok.com/@laveriansbahati30" target="_blank">TikTok</a>
+  </div>
+</div>
+
+<!-- CART OVERLAY & DRAWER -->
+<div class="cart-overlay" id="cartOv" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDr">
+  <div class="cart-hd">
+    <div class="cart-hd-title">Your Royal Cart</div>
+    <button class="cart-x" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-ft">
+    <div class="cart-total">Total <span id="cartTot">KES 0</span></div>
+    <div class="cart-note">Shipping calculated at checkout · M-Pesa accepted</div>
+    <button class="btn-checkout" onclick="openCheckout()">Pay with M-Pesa →</button>
+  </div>
+</div>
+
+<!-- M-PESA MODAL -->
+<div class="modal-overlay" id="mpesaMod">
+  <div class="modal">
+    <button class="modal-x" onclick="closeCheckout()">✕</button>
+    <div id="checkoutContent">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav class="nav" id="mainNav">
+  <a class="nav-logo" href="#">👑 King Laverians</a>
+  <ul class="nav-links">
+    <li><a href="#categories">Collections</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#membership">Membership</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-cart" onclick="openCart()">🛒 Cart <span class="cart-badge" id="cBadge">0</span></button>
+    <a class="nav-cta" href="#products">Shop Now</a>
+    <button class="hamburger" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-rings">
+    <div class="hr"></div><div class="hr"></div><div class="hr"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. For The Discerning Few · Nairobi, Kenya</p>
+    <h1 class="hero-h1"><span class="hero-crown">👑</span><br>King Laverians</h1>
+    <p class="hero-tagline">Reign in Every Detail</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">A curated universe of exceptional products — fashion, lifestyle, home & rare finds — crafted for those who demand nothing less than royalty. Delivered across Kenya and beyond.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-gold"><span>Shop the Kingdom</span></a>
+      <a href="#story" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="mq-item">Free Delivery in Nairobi <span class="mq-dot">✦</span></span>
+    <span class="mq-item">M-Pesa Accepted <span class="mq-dot">✦</span></span>
+    <span class="mq-item">New Arrivals Every Week <span class="mq-dot">✦</span></span>
+    <span class="mq-item">Premium Quality Guaranteed <span class="mq-dot">✦</span></span>
+    <span class="mq-item">30-Day Returns <span class="mq-dot">✦</span></span>
+    <span class="mq-item">Curated by Royalty, For Royalty <span class="mq-dot">✦</span></span>
+    <span class="mq-item">WhatsApp: 0793316778 <span class="mq-dot">✦</span></span>
+    <span class="mq-item">Free Delivery in Nairobi <span class="mq-dot">✦</span></span>
+    <span class="mq-item">M-Pesa Accepted <span class="mq-dot">✦</span></span>
+    <span class="mq-item">New Arrivals Every Week <span class="mq-dot">✦</span></span>
+    <span class="mq-item">Premium Quality Guaranteed <span class="mq-dot">✦</span></span>
+    <span class="mq-item">30-Day Returns <span class="mq-dot">✦</span></span>
+    <span class="mq-item">Curated by Royalty, For Royalty <span class="mq-dot">✦</span></span>
+    <span class="mq-item">WhatsApp: 0793316778 <span class="mq-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="cat-hd">
+    <p class="s-label rv">Our Collections</p>
+    <h2 class="s-title rv d1">Shop the <em>Kingdom</em></h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card rv d1"><div class="cat-bg"></div><div class="cat-tag">120+ Items</div><div class="cat-icon">⌚</div><div class="cat-overlay"><div class="cat-line"></div><div class="cat-name">Lifestyle & Accessories</div><div class="cat-desc">Elevate every moment with premium essentials</div></div></div>
+    <div class="cat-card rv d2"><div class="cat-bg"></div><div class="cat-tag">85+ Items</div><div class="cat-icon">🏠</div><div class="cat-overlay"><div class="cat-line"></div><div class="cat-name">Home & Living</div><div class="cat-desc">Transform your space into a royal retreat</div></div></div>
+    <div class="cat-card rv d3"><div class="cat-bg"></div><div class="cat-tag">200+ Items</div><div class="cat-icon">👔</div><div class="cat-overlay"><div class="cat-line"></div><div class="cat-name">Fashion & Apparel</div><div class="cat-desc">Dress with authority, move with grace</div></div></div>
+    <div class="cat-card rv d3"><div class="cat-bg"></div><div class="cat-tag">30+ Items</div><div class="cat-icon">💎</div><div class="cat-overlay"><div class="cat-line"></div><div class="cat-name">Rare & Exclusive</div><div class="cat-desc">Limited drops for the chosen few</div></div></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="s-center">
+    <p class="s-label rv">Curated Selection</p>
+    <h2 class="s-title rv d1">Bestselling <em>Picks</em></h2>
+    <p class="s-sub rv d2">Hand-curated from across the kingdom. New stock added weekly.</p>
+  </div>
+  <div class="filter-row rv d2" id="filterRow"></div>
+  <div class="prod-grid" id="prodGrid"></div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured" id="featured">
+  <div class="feat-inner">
+    <div class="feat-vis rv">
+      <div class="feat-frame"></div>
+      <div class="feat-box">👑</div>
+      <div class="feat-badge">Season Drop</div>
+    </div>
+    <div>
+      <p class="s-label rv">Staff Pick of the Season</p>
+      <h2 class="feat-name rv d1">The Royal <em>Signature</em> Collection</h2>
+      <p class="feat-desc rv d2">Handpicked by our curators — each piece in our Signature line represents the pinnacle of our diverse catalog. Bold, refined, and built to outlast trends.</p>
+      <div class="feat-perks rv d2">
+        <div class="feat-perk">Handpicked by royal curators</div>
+        <div class="feat-perk">Premium materials, exceptional quality</div>
+        <div class="feat-perk">Signature packaging & presentation</div>
+        <div class="feat-perk">Certificate of authenticity included</div>
+      </div>
+      <div class="feat-price rv d3">KES 3,500 <span>— Starting at</span></div>
+      <a href="#products" class="btn-gold rv d3"><span>Shop the Collection</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="hiw">
+  <div class="s-center">
+    <p class="s-label rv">The Process</p>
+    <h2 class="s-title rv d1">Shopping <em>Made Royal</em></h2>
+  </div>
+  <div class="steps">
+    <div class="step rv d1"><div class="step-n">01</div><div class="step-ico">🔍</div><div class="step-t">Browse the Kingdom</div><div class="step-d">Explore our hand-curated catalog spanning lifestyle, fashion, home & exclusive rarities.</div></div>
+    <div class="step rv d2"><div class="step-n">02</div><div class="step-ico">🛒</div><div class="step-t">Add to Your Court</div><div class="step-d">Build your royal cart. Every item is reserved for you while you continue exploring.</div></div>
+    <div class="step rv d3"><div class="step-n">03</div><div class="step-ico">📱</div><div class="step-t">Pay via M-Pesa</div><div class="step-d">Checkout securely with M-Pesa STK Push — just enter your number and confirm on your phone.</div></div>
+    <div class="step rv d4"><div class="step-n">04</div><div class="step-ico">📦</div><div class="step-t">Delivered to Your Throne</div><div class="step-d">Fast delivery, elegant packaging, real-time tracking. Your order arrives fit for a king.</div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="rv"><div class="stat-n">12K+</div><div class="stat-l">Happy Customers</div></div>
+    <div class="rv d1"><div class="stat-n">500+</div><div class="stat-l">Curated Products</div></div>
+    <div class="rv d2"><div class="stat-n">24h</div><div class="stat-l">Nairobi Delivery</div></div>
+    <div class="rv d3"><div class="stat-n">4.9★</div><div class="stat-l">Average Rating</div></div>
+  </div>
+</div>
+
+<!-- BRAND STORY -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-vis rv">
+      <div class="sb">⌚</div><div class="sb">🌍</div>
+      <div class="sb">💎</div><div class="sb">👑</div>
+    </div>
+    <div>
+      <p class="s-label rv">The Story</p>
+      <h2 class="story-t rv d1">Born from a <em>Passion</em> for the Extraordinary</h2>
+      <p class="story-p rv d2">King Laverians was built on a simple belief: everyone deserves products that feel truly exceptional. What started as a personal quest to find items combining quality, design, and value — grew into a curated marketplace unlike any other in Kenya.</p>
+      <p class="story-p rv d2">We scour the world — from artisan workshops to modern studios — to bring you a diverse selection spanning every corner of life. Fashion, home, lifestyle, rare collectibles. We say yes to everything that meets our royal standard.</p>
+      <p class="story-p rv d3">Every product is personally vetted. Every customer is treated like royalty. This isn't just a store. It's a kingdom built for you.</p>
+      <div class="story-sig rv d3">The Laverians</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="membership" id="membership">
+  <div class="s-center">
+    <p class="s-label rv">Royal Membership</p>
+    <h2 class="s-title rv d1">Choose Your <em>Rank</em></h2>
+    <p class="s-sub rv d2">Unlock exclusive benefits, early access & member pricing. Rise through the ranks.</p>
+  </div>
+  <div class="tiers">
+    <div class="tier t-bronze rv d1">
+      <div class="tier-ico">🥉</div><div class="tier-nm">Squire</div>
+      <div class="tier-tag">Begin your journey</div>
+      <div class="tier-p">Free</div><div class="tier-period">No card required</div>
+      <ul class="tier-perks"><li>5% off all orders</li><li>Access to new arrivals</li><li>Monthly newsletter picks</li><li>Standard delivery</li></ul>
+      <button class="tier-btn">Join Free</button>
+    </div>
+    <div class="tier t-silver rv d2">
+      <div class="tier-ico">🥈</div><div class="tier-nm">Knight</div>
+      <div class="tier-tag">Sharpen your edge</div>
+      <div class="tier-p">KES 500 <span>/mo</span></div><div class="tier-period">Cancel anytime</div>
+      <ul class="tier-perks"><li>12% off all orders</li><li>Free standard shipping</li><li>Early sale access (24h)</li><li>Priority support</li><li>Member-only bundles</li></ul>
+      <button class="tier-btn">Become a Knight</button>
+    </div>
+    <div class="tier t-gold featured rv d3">
+      <div class="tier-pop">Most Popular</div>
+      <div class="tier-ico">👑</div><div class="tier-nm">King</div>
+      <div class="tier-tag">Rule the kingdom</div>
+      <div class="tier-p">KES 1,200 <span>/mo</span></div><div class="tier-period">Cancel anytime</div>
+      <ul class="tier-perks"><li>20% off all orders</li><li>Free express shipping always</li><li>First access to limited drops</li><li>VIP concierge support</li><li>Surprise royal gift monthly</li><li>Exclusive pre-orders</li></ul>
+      <button class="tier-btn">Claim the Crown</button>
+    </div>
+    <div class="tier t-plat rv d4">
+      <div class="tier-ico">💠</div><div class="tier-nm">Emperor</div>
+      <div class="tier-tag">Beyond royalty</div>
+      <div class="tier-p">KES 2,800 <span>/mo</span></div><div class="tier-period">Billed annually · Best value</div>
+      <ul class="tier-perks"><li>30% off all orders</li><li>Same-day Nairobi delivery</li><li>Personal shopping curator</li><li>Invite-only events & drops</li><li>Co-design a product with us</li><li>Custom engraving on items</li></ul>
+      <button class="tier-btn">Ascend to Emperor</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="s-center">
+    <p class="s-label rv">Customer Voices</p>
+    <h2 class="s-title rv d1">What the <em>Kingdom</em> Says</h2>
+  </div>
+  <div class="testi-wrap rv d2">
+    <div id="testiSlides">
+      <div class="testi-slide on"><div class="testi-stars">★★★★★</div><p class="testi-q">"King Laverians changed how I shop. Every product feels like it was chosen just for me. The M-Pesa checkout is seamless — so easy. Pure royalty."</p><div class="testi-who">— Marcus A.</div><div class="testi-loc">Nairobi, Kenya · Verified King Member</div></div>
+      <div class="testi-slide"><div class="testi-stars">★★★★★</div><p class="testi-q">"The variety is stunning — I found gifts for everyone in my family in one visit. Quality is exceptional across every category. Worth every shilling."</p><div class="testi-who">— Serena O.</div><div class="testi-loc">Mombasa, Kenya · Loyal Knight Member</div></div>
+      <div class="testi-slide"><div class="testi-stars">★★★★★</div><p class="testi-q">"Fast delivery, gorgeous packaging, products that exceed expectations every time. I paid via M-Pesa and it was confirmed in seconds. Incredible service."</p><div class="testi-who">— Damien K.</div><div class="testi-loc">Kisumu, Kenya · Emperor Member</div></div>
+      <div class="testi-slide"><div class="testi-stars">★★★★★</div><p class="testi-q">"Discovered King Laverians on TikTok and ordered immediately. All items arrived better than described and beautifully packaged. The team on WhatsApp is so responsive!"</p><div class="testi-who">— Amara N.</div><div class="testi-loc">Nakuru, Kenya · Squire Member</div></div>
+    </div>
+    <div class="testi-ctrls">
+      <button class="t-btn" onclick="tPrev()">←</button>
+      <div class="t-dots" id="tDots"></div>
+      <button class="t-btn" onclick="tNext()">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="s-center">
+    <p class="s-label rv">Questions & Answers</p>
+    <h2 class="s-title rv d1">The Royal <em>FAQ</em></h2>
+  </div>
+  <div class="faq-inner rv d2">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does M-Pesa payment work? <span class="faq-ico">+</span></button><div class="faq-a"><p>At checkout, enter your Safaricom M-Pesa number. You'll receive an STK Push prompt on your phone. Enter your M-Pesa PIN to confirm — payment is processed instantly and securely. No card needed.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does delivery take? <span class="faq-ico">+</span></button><div class="faq-a"><p>Nairobi delivery is 24 hours. Other Kenya counties take 2–4 business days. King members enjoy free express shipping, and Emperor members in Nairobi get same-day delivery.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is your return policy? <span class="faq-ico">+</span></button><div class="faq-a"><p>We offer 30-day hassle-free returns on all orders. Simply reach us on WhatsApp at 0793316778 and we'll arrange collection. Refunds are processed via M-Pesa within 24 hours.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Are your products authentic and quality-checked? <span class="faq-ico">+</span></button><div class="faq-a"><p>Every product in our catalog is personally vetted by our curators for quality, design integrity, and value. We work with trusted suppliers and reject anything that doesn't meet our royal standard.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I track my order? <span class="faq-ico">+</span></button><div class="faq-a"><p>Yes! After your order is confirmed, we'll send tracking details via WhatsApp or SMS. You can also contact us on WhatsApp (0793316778) for real-time updates on your delivery.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I cancel or change my membership? <span class="faq-ico">+</span></button><div class="faq-a"><p>Message us on WhatsApp (0793316778) or DM us on Instagram @kinglaverians any time. No cancellation fees — your benefits remain until end of billing period.</p></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="s-label rv">Get in Touch</p>
+      <h2 class="contact-info-title rv d1">Reach the <em>Kingdom</em></h2>
+      <p class="contact-p rv d2">We're always here to help — whether you have questions about an order, need product advice, or just want to say hello. Reach us on any platform below.</p>
+      <div class="social-cards rv d3">
+        <a class="soc-card" href="https://instagram.com/kinglaverians" target="_blank">
+          <span class="soc-icon">📸</span>
+          <div class="soc-info"><div class="soc-platform">Instagram</div><div class="soc-handle">@kinglaverians</div></div>
+        </a>
+        <a class="soc-card" href="https://facebook.com/kinglaverians" target="_blank">
+          <span class="soc-icon">👤</span>
+          <div class="soc-info"><div class="soc-platform">Facebook</div><div class="soc-handle">kinglaverians</div></div>
+        </a>
+        <a class="soc-card wa-chip" href="https://wa.me/254793316778" target="_blank">
+          <span class="soc-icon">💬</span>
+          <div class="soc-info"><div class="soc-platform">WhatsApp</div><div class="soc-handle">0793 316 778</div></div>
+        </a>
+        <a class="soc-card" href="https://tiktok.com/@laveriansbahati30" target="_blank">
+          <span class="soc-icon">🎵</span>
+          <div class="soc-info"><div class="soc-platform">TikTok</div><div class="soc-handle">@laveriansbahati30</div></div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form-title rv">Send us a Message</div>
+      <div class="cf-grid rv d1">
+        <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" placeholder="e.g. John Kamau" id="cfName"/></div>
+        <div class="form-group"><label class="form-label">Phone / Email</label><input class="form-input" type="text" placeholder="07xx or email@..." id="cfContact"/></div>
+      </div>
+      <div class="form-group rv d2"><label class="form-label">Subject</label><input class="form-input" type="text" placeholder="What can we help with?" id="cfSubject"/></div>
+      <div class="form-group rv d3">
+        <textarea class="cf-textarea" placeholder="Your message..." id="cfMessage"></textarea>
+      </div>
+      <div class="rv d4" style="margin-top:1rem;">
+        <button class="btn-gold" onclick="sendMessage()" style="cursor:none;border:none;"><span>Send Message →</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="nl-inner">
+    <p class="s-label rv">Royal Dispatches</p>
+    <h2 class="nl-title rv d1">Join the Inner Court</h2>
+    <p class="nl-sub rv d2">Early access to drops, member-only deals & curated picks — straight to your inbox. Royalty has its privileges.</p>
+    <div class="nl-form rv d3">
+      <input class="nl-input" type="email" id="nlEmail" placeholder="Your email address"/>
+      <button class="nl-btn" onclick="subscribe()">Subscribe</button>
+    </div>
+    <p class="nl-note rv d4">No spam. Unsubscribe anytime. Your privacy is sacred to us.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="fb-name">👑 King Laverians</div>
+      <p class="fb-desc">A diverse, curated marketplace for those who live with intention. Every product is chosen to elevate your world. Based in Kenya, delivering across Africa.</p>
+      <div class="fb-socials">
+        <a class="fb-soc" href="https://instagram.com/kinglaverians" target="_blank">Instagram</a>
+        <a class="fb-soc" href="https://facebook.com/kinglaverians" target="_blank">Facebook</a>
+        <a class="fb-soc" href="https://wa.me/254793316778" target="_blank">WhatsApp</a>
+        <a class="fb-soc" href="https://tiktok.com/@laveriansbahati30" target="_blank">TikTok</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-title">Shop</div>
+      <ul class="fc-links">
+        <li><a href="#categories">Lifestyle & Accessories</a></li>
+        <li><a href="#categories">Home & Living</a></li>
+        <li><a href="#categories">Fashion & Apparel</a></li>
+        <li><a href="#categories">Rare & Exclusive</a></li>
+        <li><a href="#products">New Arrivals</a></li>
+        <li><a href="#products">Sale Items</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-title">Company</div>
+      <ul class="fc-links">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://wa.me/254793316778" target="_blank">WhatsApp Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-title">Contact</div>
+      <ul class="fc-links">
+        <li><a href="https://instagram.com/kinglaverians" target="_blank">@kinglaverians</a></li>
+        <li><a href="https://facebook.com/kinglaverians" target="_blank">fb/kinglaverians</a></li>
+        <li><a href="https://wa.me/254793316778" target="_blank">0793 316 778</a></li>
+        <li><a href="https://tiktok.com/@laveriansbahati30" target="_blank">@laveriansbahati30</a></li>
+        <li><a href="#">Nairobi, Kenya</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-trust">
+    <div class="ft-item">🔒 Secure M-Pesa Checkout</div>
+    <div class="ft-item">🚚 Free Nairobi Delivery</div>
+    <div class="ft-item">↩️ 30-Day Returns</div>
+    <div class="ft-item">✦ 12,000+ Happy Customers</div>
+    <div class="ft-item">📱 M-Pesa Accepted</div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 King Laverians. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Refund Policy</a>
+    </div>
+  </div>
+</footer>
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT — Frontend Logic + M-Pesa Integration
+═══════════════════════════════════════════════════════ -->
+<script>
+/* ────────────────────────────────────────
+   CURSOR
+──────────────────────────────────────── */
+const cur = document.getElementById('cur');
+const curR = document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+if(window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(anim);})();
+  document.querySelectorAll('a,button,.cat-card,.prod-card,.tier,.step,.sb,.soc-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';curR.style.width='52px';curR.style.height='52px';});
+    el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curR.style.width='32px';curR.style.height='32px';});
+  });
+}
+
+/* ────────────────────────────────────────
+   NAV SCROLL
+──────────────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('solid',window.scrollY>60);
+  document.getElementById('btt').classList.toggle('vis',window.scrollY>400);
+});
+
+/* ────────────────────────────────────────
+   MOBILE NAV
+──────────────────────────────────────── */
+function toggleMob(){
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('mNav').classList.toggle('open');
+  document.getElementById('mOv').classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('mNav').classList.remove('open');
+  document.getElementById('mOv').classList.remove('open');
+}
+
+/* ────────────────────────────────────────
+   PRODUCTS DATA
+──────────────────────────────────────── */
+const PRODUCTS = [
+  {id:1,name:'Obsidian Minimalist Watch',cat:'lifestyle',emoji:'⌚',price:4500,rating:4.9,reviews:142,badge:'Bestseller'},
+  {id:2,name:'Royal Velvet Throw Blanket',cat:'home',emoji:'🛋️',price:2200,rating:4.8,reviews:89,badge:'New'},
+  {id:3,name:'Signature Linen Shirt',cat:'fashion',emoji:'👔',price:2800,rating:4.7,reviews:201,badge:null},
+  {id:4,name:'Crystal Decanter Set',cat:'home',emoji:'🥃',price:3900,oldPrice:5500,rating:5.0,reviews:57,badge:'Sale'},
+  {id:5,name:'Gold Leaf Fragrance',cat:'lifestyle',emoji:'🕯️',price:1800,rating:4.9,reviews:318,badge:'Bestseller'},
+  {id:6,name:'Limited Crown Sneakers',cat:'rare',emoji:'👟',price:8500,rating:5.0,reviews:33,badge:'Limited'},
+  {id:7,name:'Merino Wool Scarf',cat:'fashion',emoji:'🧣',price:1500,rating:4.6,reviews:177,badge:null},
+  {id:8,name:'Artisan Leather Journal',cat:'lifestyle',emoji:'📓',price:1200,rating:4.8,reviews:95,badge:'New'},
+  {id:9,name:'Brass Wall Art Panel',cat:'home',emoji:'🎨',price:5800,rating:4.7,reviews:42,badge:'New'},
+  {id:10,name:'Silk Evening Dress',cat:'fashion',emoji:'👗',price:6500,oldPrice:8000,rating:4.9,reviews:68,badge:'Sale'},
+  {id:11,name:'Royal Cologne 100ml',cat:'lifestyle',emoji:'💎',price:3200,rating:4.8,reviews:155,badge:'Bestseller'},
+  {id:12,name:'Hand-Woven Basket Set',cat:'rare',emoji:'🧺',price:2600,rating:5.0,reviews:28,badge:'Limited'},
+];
+
+let cart = [];
+let activeFilter = 'all';
+
+function renderProducts(filter='all'){
+  activeFilter = filter;
+  const grid = document.getElementById('prodGrid');
+  const filtered = filter==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===filter);
+  grid.innerHTML = filtered.map((p,i)=>{
+    const bdg = p.badge ? `<div class="prod-badge ${p.badge==='Sale'?'sale':p.badge==='Limited'?'limited':''}">${p.badge}</div>` : '';
+    const old = p.oldPrice ? `<del>KES ${p.oldPrice.toLocaleString()}</del>` : '';
+    const stars = '★'.repeat(Math.floor(p.rating))+(p.rating%1?'½':'');
+    return `<div class="prod-card rv d${(i%4)+1}">
+      <div class="prod-img">${bdg}<span style="position:relative;z-index:1">${p.emoji}</span></div>
+      <div class="prod-body">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-stars">${stars} <span>(${p.reviews})</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">KES ${p.price.toLocaleString()} ${old}</div>
+          <button class="prod-add" id="add${p.id}" onclick="addToCart(${p.id})">+ Add</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.rv:not(.vi)').forEach(el=>observer.observe(el));
+}
+
+function renderFilters(){
+  const cats = ['all','lifestyle','home','fashion','rare'];
+  document.getElementById('filterRow').innerHTML = cats.map(c=>`<button class="filt${c==='all'?' on':''}" data-f="${c}" onclick="setFilter('${c}')">${c==='all'?'All Items':c.charAt(0).toUpperCase()+c.slice(1)}</button>`).join('');
+}
+function setFilter(f){
+  document.querySelectorAll('.filt').forEach(b=>b.classList.toggle('on',b.dataset.f===f));
+  renderProducts(f);
+}
+
+/* ────────────────────────────────────────
+   CART
+──────────────────────────────────────── */
+function addToCart(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  const ex = cart.find(x=>x.id===id);
+  if(ex) ex.qty++;
+  else cart.push({...p,qty:1});
+  updateCartUI();
+  showToast(`👑 <span class="tg">${p.name}</span> added to cart`);
+  const btn = document.getElementById('add'+id);
+  if(btn){btn.textContent='✓ Added';btn.classList.add('added');setTimeout(()=>{btn.textContent='+ Add';btn.classList.remove('added');},1500);}
+}
+function changeQty(id,delta){
+  const item = cart.find(x=>x.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty<=0) cart = cart.filter(x=>x.id!==id);
+  updateCartUI();
+}
+function updateCartUI(){
+  const count = cart.reduce((a,c)=>a+c.qty,0);
+  document.getElementById('cBadge').textContent = count;
+  const total = cart.reduce((a,c)=>a+c.price*c.qty,0);
+  document.getElementById('cartTot').textContent = 'KES '+total.toLocaleString();
+  const body = document.getElementById('cartBody');
+  if(!cart.length){
+    body.innerHTML='<div class="cart-empty-msg"><div class="ei">🛒</div><p>Your cart awaits royalty</p></div>';
+  } else {
+    body.innerHTML = cart.map(c=>`
+      <div class="cart-item">
+        <div class="cart-item-img">${c.emoji}</div>
+        <div style="flex:1">
+          <div class="ci-name">${c.name}</div>
+          <div class="ci-price">KES ${(c.price*c.qty).toLocaleString()}</div>
+          <div class="ci-qty">
+            <button onclick="changeQty(${c.id},-1)">−</button>
+            <span>${c.qty}</span>
+            <button onclick="changeQty(${c.id},1)">+</button>
+          </div>
+        </div>
+        <button class="ci-rm" onclick="changeQty(${c.id},-99)">✕</button>
+      </div>`).join('');
+  }
+}
+function openCart(){ document.getElementById('cartDr').classList.add('open'); document.getElementById('cartOv').classList.add('open'); }
+function closeCart(){ document.getElementById('cartDr').classList.remove('open'); document.getElementById('cartOv').classList.remove('open'); }
+
+/* ────────────────────────────────────────
+   M-PESA CHECKOUT
+──────────────────────────────────────── */
+/*
+  BACKEND INTEGRATION NOTE:
+  ─────────────────────────
+  To fully wire M-Pesa STK Push in production:
+
+  1. Register at https://developer.safaricom.co.ke
+  2. Create a Daraja app → get Consumer Key, Consumer Secret, Shortcode, Passkey
+  3. Set up a Node.js / Python / PHP backend with these endpoints:
+     POST /api/mpesa/initiate  → triggers STK Push
+     POST /api/mpesa/callback  → receives Safaricom payment confirmation
+     GET  /api/mpesa/status/:checkoutId → query payment status
+
+  Node.js example (server.js):
+  ─────────────────────────────
+  const express = require('express');
+  const axios = require('axios');
+  const app = express();
+  app.use(express.json());
+
+  async function getToken() {
+    const auth = Buffer.from(`${CONSUMER_KEY}:${CONSUMER_SECRET}`).toString('base64');
+    const res = await axios.get('https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials',
+      { headers: { Authorization: `Basic ${auth}` } });
+    return res.data.access_token;
+  }
+
+  app.post('/api/mpesa/initiate', async (req, res) => {
+    const { phone, amount, orderId } = req.body;
+    const token = await getToken();
+    const timestamp = new Date().toISOString().replace(/[^0-9]/g,'').slice(0,14);
+    const password = Buffer.from(`${SHORTCODE}${PASSKEY}${timestamp}`).toString('base64');
+    const payload = {
+      BusinessShortCode: SHORTCODE, Password: password, Timestamp: timestamp,
+      TransactionType: 'CustomerPayBillOnline',
+      Amount: amount, PartyA: phone, PartyB: SHORTCODE,
+      PhoneNumber: phone, CallBackURL: 'https://yourdomain.com/api/mpesa/callback',
+      AccountReference: orderId, TransactionDesc: 'King Laverians Order'
+    };
+    const response = await axios.post(
+      'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',
+      payload, { headers: { Authorization: `Bearer ${token}` } });
+    res.json(response.data);
+  });
+
+  app.post('/api/mpesa/callback', (req, res) => {
+    const { Body } = req.body;
+    if (Body.stkCallback.ResultCode === 0) {
+      // Payment successful — update order in DB
+    }
+    res.json({ ResultCode: 0, ResultDesc: 'Accepted' });
+  });
+
+  app.listen(3000, () => console.log('Server running on port 3000'));
+  ─────────────────────────────────────────────────────────────────
+
+  For this frontend, we simulate the flow with realistic UX.
+*/
+
+function openCheckout(){
+  if(!cart.length){ showToast('Your cart is empty!'); return; }
+  closeCart();
+  const total = cart.reduce((a,c)=>a+c.price*c.qty,0);
+  document.getElementById('checkoutContent').innerHTML = `
+    <div class="modal-logo"><span>👑 King Laverians</span></div>
+    <h2 class="modal-title">Secure Checkout</h2>
+    <p class="modal-sub">Complete your order securely using M-Pesa. A PIN prompt will appear on your phone.</p>
+    <div class="mpesa-badge">
+      <span class="mpesa-icon">📱</span>
+      <span class="mpesa-text">SAFARICOM M-PESA · SECURE PAYMENT</span>
+    </div>
+    <div class="order-summary">
+      <div class="os-title">Order Summary</div>
+      ${cart.map(c=>`<div class="os-item"><span>${c.name} × ${c.qty}</span><span>KES ${(c.price*c.qty).toLocaleString()}</span></div>`).join('')}
+      <div class="os-item" style="color:var(--ivory-d)"><span>Delivery (Nairobi)</span><span>Free</span></div>
+      <div class="os-total"><span>Total</span><span>KES ${total.toLocaleString()}</span></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input class="form-input" type="text" id="mpName" placeholder="Your full name"/>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">M-Pesa Number</label>
+        <input class="form-input" type="tel" id="mpPhone" placeholder="07XX XXX XXX"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Delivery Location</label>
+        <input class="form-input" type="text" id="mpLocation" placeholder="e.g. Westlands"/>
+      </div>
+    </div>
+    <div class="mpesa-steps">
+      <div class="ms-title">How M-Pesa Payment Works</div>
+      <ul class="ms-list">
+        <li><span class="ms-num">1.</span> Enter your Safaricom number above and click Pay</li>
+        <li><span class="ms-num">2.</span> A PIN prompt appears on your phone within seconds</li>
+        <li><span class="ms-num">3.</span> Enter your M-Pesa PIN to confirm payment</li>
+        <li><span class="ms-num">4.</span> You receive an SMS confirmation & order number</li>
+      </ul>
+    </div>
+    <button class="pay-btn" id="payBtn" onclick="initiateMpesa()">
+      📱 Pay KES ${total.toLocaleString()} via M-Pesa
+    </button>
+    <p class="pay-note">Your payment is processed securely by Safaricom M-Pesa. We never store your PIN. By paying, you agree to our Terms of Service.</p>
+  `;
+  document.getElementById('mpesaMod').classList.add('open');
+}
+
+function closeCheckout(){ document.getElementById('mpesaMod').classList.remove('open'); }
+
+function initiateMpesa(){
+  const name = document.getElementById('mpName').value.trim();
+  const phone = document.getElementById('mpPhone').value.trim();
+  const location = document.getElementById('mpLocation').value.trim();
+
+  if(!name){ showToast('Please enter your name'); return; }
+  if(!phone || phone.length < 9){ showToast('Please enter a valid M-Pesa number'); return; }
+  if(!location){ showToast('Please enter your delivery location'); return; }
+
+  // Format phone for Safaricom API (254XXXXXXXXX)
+  let formatted = phone.replace(/\s/g,'');
+  if(formatted.startsWith('0')) formatted = '254'+formatted.slice(1);
+  if(formatted.startsWith('+')) formatted = formatted.slice(1);
+
+  const total = cart.reduce((a,c)=>a+c.price*c.qty,0);
+  const orderId = 'KL'+Date.now().toString().slice(-8).toUpperCase();
+
+  // Show processing state
+  document.getElementById('checkoutContent').innerHTML = `
+    <div style="text-align:center;padding:3rem 1rem;">
+      <div class="spinner"></div>
+      <div class="pay-status">
+        <div class="ps-msg">Sending M-Pesa Request...</div>
+        <div class="ps-sub">Check your phone <strong>${phone}</strong> for an M-Pesa PIN prompt.<br/>Enter your PIN to complete payment.</div>
+      </div>
+    </div>`;
+
+  /*
+    PRODUCTION: Replace this timeout with:
+    fetch('/api/mpesa/initiate', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ phone: formatted, amount: total, orderId, name, location })
+    }).then(r=>r.json()).then(data => {
+      if(data.CheckoutRequestID) pollPaymentStatus(data.CheckoutRequestID, orderId, total, name, phone);
+      else showPaymentError();
+    }).catch(showPaymentError);
+  */
+
+  // Frontend simulation (replace with real backend call above)
+  setTimeout(()=>{
+    showPaymentSuccess(orderId, total, name, phone);
+  }, 3000);
+}
+
+function showPaymentSuccess(orderId, total, name, phone){
+  cart = [];
+  updateCartUI();
+  document.getElementById('checkoutContent').innerHTML = `
+    <div class="pay-status">
+      <div class="ps-ico">✅</div>
+      <div class="ps-msg">Payment Confirmed!</div>
+      <div class="ps-sub">
+        Thank you, <strong>${name}</strong>! Your order <strong>${orderId}</strong> has been placed.<br/><br/>
+        KES ${total.toLocaleString()} received via M-Pesa.<br/>
+        An SMS confirmation has been sent to ${phone}.<br/><br/>
+        Our team will contact you on WhatsApp for delivery details.
+      </div>
+      <br/>
+      <a href="https://wa.me/254793316778?text=Hi! My order ${orderId} is confirmed. Can you confirm my delivery details?" target="_blank" class="btn-gold" style="margin-top:1rem;border:none;cursor:pointer;display:inline-flex;">
+        <span>📱 Chat on WhatsApp</span>
+      </a>
+      <br/><br/>
+      <button onclick="closeCheckout()" style="background:none;border:1px solid rgba(201,168,76,.25);color:var(--gold);font-family:inherit;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;padding:.7rem 1.5rem;cursor:pointer;margin-top:.5rem;">Continue Shopping</button>
+    </div>`;
+  showToast('👑 Order confirmed! Check your SMS for details.');
+}
+
+/* Poll status from backend in production:
+function pollPaymentStatus(checkoutId, orderId, total, name, phone){
+  let attempts = 0;
+  const poll = setInterval(async ()=>{
+    attempts++;
+    if(attempts > 12){ clearInterval(poll); showPaymentTimeout(); return; }
+    const r = await fetch(`/api/mpesa/status/${checkoutId}`).then(x=>x.json());
+    if(r.status==='SUCCESS'){ clearInterval(poll); showPaymentSuccess(orderId,total,name,phone); }
+    else if(r.status==='FAILED'){ clearInterval(poll); showPaymentError(); }
+  }, 5000);
+}
+*/
+
+/* ────────────────────────────────────────
+   TESTIMONIALS
+──────────────────────────────────────── */
+const slides = document.querySelectorAll('.testi-slide');
+let tIdx = 0;
+const dotsEl = document.getElementById('tDots');
+slides.forEach((_,i)=>{
+  const d = document.createElement('button');
+  d.className='t-dot'+(i===0?' on':'');
+  d.onclick=()=>goT(i);
+  dotsEl.appendChild(d);
+});
+function goT(i){
+  slides[tIdx].classList.remove('on');
+  document.querySelectorAll('.t-dot')[tIdx].classList.remove('on');
+  tIdx=i;
+  slides[tIdx].classList.add('on');
+  document.querySelectorAll('.t-dot')[tIdx].classList.add('on');
+}
+function tNext(){ goT((tIdx+1)%slides.length); }
+function tPrev(){ goT((tIdx-1+slides.length)%slides.length); }
+setInterval(tNext, 5500);
+
+/* ────────────────────────────────────────
+   FAQ
+──────────────────────────────────────── */
+function toggleFaq(btn){
+  const ans = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('on');
+  document.querySelectorAll('.faq-q.on').forEach(q=>{q.classList.remove('on');q.nextElementSibling.classList.remove('on');});
+  if(!isOpen){ btn.classList.add('on'); ans.classList.add('on'); }
+}
+
+/* ────────────────────────────────────────
+   CONTACT FORM
+──────────────────────────────────────── */
+function sendMessage(){
+  const name = document.getElementById('cfName').value.trim();
+  const contact = document.getElementById('cfContact').value.trim();
+  const subject = document.getElementById('cfSubject').value.trim();
+  const message = document.getElementById('cfMessage').value.trim();
+  if(!name||!contact||!message){ showToast('Please fill in all required fields'); return; }
+  const waMsg = encodeURIComponent(`*New Message from King Laverians Website*\n\nName: ${name}\nContact: ${contact}\nSubject: ${subject||'General Enquiry'}\n\n${message}`);
+  window.open(`https://wa.me/254793316778?text=${waMsg}`, '_blank');
+  showToast('👑 Redirecting to WhatsApp...');
+  ['cfName','cfContact','cfSubject','cfMessage'].forEach(id=>document.getElementById(id).value='');
+}
+
+/* ────────────────────────────────────────
+   NEWSLETTER
+──────────────────────────────────────── */
+function subscribe(){
+  const email = document.getElementById('nlEmail').value.trim();
+  if(!email||!email.includes('@')){ showToast('Please enter a valid email'); return; }
+  showToast('👑 Welcome to the Inner Court!');
+  document.getElementById('nlEmail').value='';
+}
+
+/* ────────────────────────────────────────
+   TOAST
+──────────────────────────────────────── */
+let toastT;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.innerHTML=msg; t.classList.add('show');
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ────────────────────────────────────────
+   SCROLL REVEAL
+──────────────────────────────────────── */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vi'); observer.unobserve(e.target); } });
+},{threshold:0.07});
+document.querySelectorAll('.rv').forEach(el=>observer.observe(el));
+
+/* ────────────────────────────────────────
+   INIT
+──────────────────────────────────────── */
+renderFilters();
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
